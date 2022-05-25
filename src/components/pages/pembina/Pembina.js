@@ -1,4 +1,5 @@
 import Sidebar from "../../partials/Sidebar";
+import { Link } from "react-router-dom";
 
 function Pembina() {
   return (
@@ -135,7 +136,10 @@ function Pembina() {
                   </tr>
                 </tbody>
               </table>
+              <Link to="/pembina/create">
               <button className="btn btn-primary">Tambah</button>
+              </Link>
+              
             </div>
           </div>
 

@@ -138,7 +138,7 @@ function Sidebar() {
             <Link
               to="/pembina"
               className={
-                "nav-link link-dark" + (url === "/pembina" ? "active" : "")
+                "nav-link link-dark" + (url === "/pembina" ? "active" : "" || url === "/pembina/create" ? "active" : "")
               }
             >
               <div aria-current="page">
@@ -153,7 +153,7 @@ function Sidebar() {
             <Link
               to="/anggota"
               className={
-                "nav-link link-dark" + (url === "/anggota" ? "active" : "")
+                "nav-link link-dark" + (url === "/anggota" ? "active" : "" || url ===  "/anggota/create" ? "active" : "")
               }
             >
               <div aria-current="page">

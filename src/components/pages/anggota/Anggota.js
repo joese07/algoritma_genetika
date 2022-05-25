@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Sidebar from "../../partials/Sidebar";
 
 function Anggota() {
@@ -135,7 +136,11 @@ function Anggota() {
                   </tr>
                 </tbody>
               </table>
+              <Link 
+              to="/anggota/create">
               <button className="btn btn-primary">Tambah</button>
+              </Link>
+              
             </div>
           </div>
 
