@@ -8,8 +8,8 @@ function Anggota() {
         <Sidebar />
         <div className="b-example-divider b-example-vr" />
         <div className="container">
-          <div className=" bg-light rounded-3">
-            <div className="container-fluid py-5">
+          <div className=" bg-light rounded-2 mt-3">
+            <div className="container-fluid py-3">
               <h1 className="display-5 fw-bold">Halaman Anggota</h1>
               <p className="col-md-8 fs-4">
                 Klik tombol dibawah jika ingin langsung generate jadwal{" "}
@@ -31,15 +31,13 @@ function Anggota() {
                     <td>Otto</td>
                     <td>@mdo</td>
                     <td>
-                      {" "}
                       <div class="d-flex justify-content-evenly">
-                        <a
-                          class="btn btn-success btn-sm"
-                          href="/histories/<%= data.id %>"
-                          role="button"
-                        >
-                          <i class="bi-eye-fill"></i> Lihat Detail
-                        </a>
+                        <Link to="/anggota/detail">
+                          <div class="btn btn-success btn-sm" role="button">
+                            <i class="bi-eye-fill"></i> Lihat Detail
+                          </div>
+                        </Link>
+
                         <a
                           class="btn btn-primary btn-sm"
                           href="/histories/<%= data.id %>/edit"
@@ -136,11 +134,9 @@ function Anggota() {
                   </tr>
                 </tbody>
               </table>
-              <Link 
-              to="/anggota/create">
-              <button className="btn btn-primary">Tambah</button>
+              <Link to="/anggota/create">
+                <button className="btn btn-primary">Tambah</button>
               </Link>
-              
             </div>
           </div>
 

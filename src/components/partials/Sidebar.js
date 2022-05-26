@@ -75,97 +75,112 @@ function Sidebar() {
           />
         </symbol>
       </svg>
-      <h1 className="visually-hidden">Sidebars examples</h1>
-      <div
-        className="d-flex flex-column flex-shrink-0 p-3 bg-light"
-        style={{ width: "280px" }}
-      >
-        <a
-          href="/"
-          className="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none"
-        >
-          <svg className="bi pe-none me-2" width={40} height={32}>
-            <use xlinkHref="#bootstrap" />
-          </svg>
-          <span className="fs-4">Sidebar</span>
-        </a>
-        <hr />
-        <ul className="nav nav-pills flex-column mb-auto">
-          <li className="nav-item">
-            <Link
-              to="/"
-              className={"nav-link link-dark" + (url === "/" ? "active" : "")}
-            >
-              <div aria-current="page">
-                <svg className="bi pe-none me-2" width={16} height={16}>
-                  <use xlinkHref="#home" />
-                </svg>
-                Home
-              </div>
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/dashboard"
-              className={
-                "nav-link link-dark" + (url === "/dashboard" ? "active" : "")
-              }
-            >
-              <div aria-current="page">
-                <svg className="bi pe-none me-2" width={16} height={16}>
-                  <use xlinkHref="#speedometer2" />
-                </svg>
-                Dashboard
-              </div>
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/jadwal"
-              className={
-                "nav-link link-dark" + (url === "/jadwal" ? "active" : "")
-              }
-            >
-              <div aria-current="page">
-                <svg className="bi pe-none me-2" width={16} height={16}>
-                  <use xlinkHref="#table" />
-                </svg>
-                Generate Jadwal
-              </div>
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/pembina"
-              className={
-                "nav-link link-dark" + (url === "/pembina" ? "active" : "" || url === "/pembina/create" ? "active" : "")
-              }
-            >
-              <div aria-current="page">
-                <svg className="bi pe-none me-2" width={16} height={16}>
-                  <use xlinkHref="#grid" />
-                </svg>
-                Data Pembina
-              </div>
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/anggota"
-              className={
-                "nav-link link-dark" + (url === "/anggota" ? "active" : "" || url ===  "/anggota/create" ? "active" : "")
-              }
-            >
-              <div aria-current="page">
-                <svg className="bi pe-none me-2" width={16} height={16}>
-                  <use xlinkHref="#people-circle" />
-                </svg>
-                Data Anggota
-              </div>
-            </Link>
-          </li>
-        </ul>
-        <hr />
+
+      <div className="bg-light">
+        <div className="flex-shrink-0 p-3" style={{ width: "280px" }}>
+          <a
+            href="/"
+            className="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none"
+          >
+            <svg className="bi pe-none me-2" width={40} height={32}>
+              <use xlinkHref="#bootstrap" />
+            </svg>
+            <span className="fs-4">Sidebar</span>
+          </a>
+          <hr />
+          <ul className="nav nav-pills flex-column mb-auto">
+            <li className="nav-item">
+              <Link
+                to="/"
+                className={"nav-link link-dark" + (url === "/" ? "active" : "")}
+              >
+                <div aria-current="page">
+                  <svg className="bi pe-none me-2" width={16} height={16}>
+                    <use xlinkHref="#home" />
+                  </svg>
+                  Home
+                </div>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/dashboard"
+                className={
+                  "nav-link link-dark" + (url === "/dashboard" ? "active" : "")
+                }
+              >
+                <div aria-current="page">
+                  <svg className="bi pe-none me-2" width={16} height={16}>
+                    <use xlinkHref="#speedometer2" />
+                  </svg>
+                  Dashboard
+                </div>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/jadwal"
+                className={
+                  "nav-link link-dark" + (url === "/jadwal" ? "active" : "")
+                }
+              >
+                <div aria-current="page">
+                  <svg className="bi pe-none me-2" width={16} height={16}>
+                    <use xlinkHref="#table" />
+                  </svg>
+                  Generate Jadwal
+                </div>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/pembina"
+                className={
+                  "nav-link link-dark" +
+                  (url === "/pembina"
+                    ? "active"
+                    : "" || url === "/pembina/create"
+                    ? "active"
+                    : "" || url === "/pembina/detail"
+                    ? "active"
+                    : "")
+                }
+              >
+                <div aria-current="page">
+                  <svg className="bi pe-none me-2" width={16} height={16}>
+                    <use xlinkHref="#grid" />
+                  </svg>
+                  Data Pembina
+                </div>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/anggota"
+                className={
+                  "nav-link link-dark" +
+                  (url === "/anggota"
+                    ? "active"
+                    : "" || url === "/anggota/create"
+                    ? "active"
+                    : "" || url === "/anggota/detail"
+                    ? "active"
+                    : "")
+                }
+              >
+                <div aria-current="page">
+                  <svg className="bi pe-none me-2" width={16} height={16}>
+                    <use xlinkHref="#people-circle" />
+                  </svg>
+                  Data Anggota
+                </div>
+              </Link>
+            </li>
+          </ul>
+
+          <hr style={{ marginTop: "260px" }} />
+          <p style={{ textAlign: "center" }}>Skripsi</p>
+        </div>
       </div>
     </div>
   );

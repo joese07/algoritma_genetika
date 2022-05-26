@@ -7,6 +7,8 @@ import Pembina from "./components/pages/pembina/Pembina";
 import CreatePembina from "./components/pages/pembina/CreatePembina";
 import Anggota from "./components/pages/anggota/Anggota";
 import CreateAnggota from "./components/pages/anggota/CreateAnggota";
+import Detail from "./components/pages/pembina/DetailPembina";
+import DetailAnggota from "./components/pages/anggota/DetailAnggota";
 
 function App() {
   return (
@@ -16,9 +18,11 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/jadwal" element={<Jadwal />} />
         <Route path="/pembina" element={<Pembina />} />
-        <Route path="/pembina/create" element={<CreatePembina />}/>
+        <Route path="/pembina/create" element={<CreatePembina />} />
+        <Route path="/pembina/detail" element={<Detail />} />
         <Route path="/anggota" element={<Anggota />} />
-        <Route path="/anggota/create" element={<CreateAnggota/>} />
+        <Route path="/anggota/create" element={<CreateAnggota />} />
+        <Route path="/anggota/detail" element={<DetailAnggota />} />
       </Routes>
     </BrowserRouter>
   );

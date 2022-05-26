@@ -8,8 +8,8 @@ function Pembina() {
         <Sidebar />
         <div className="b-example-divider b-example-vr" />
         <div className="container">
-          <div className=" bg-light rounded-3">
-            <div className="container-fluid py-5">
+          <div className=" bg-light rounded-3 mt-3">
+            <div className="container-fluid py-3">
               <h1 className="display-5 fw-bold">Halaman Data Pembina</h1>
               <p className="col-md-8 fs-4">
                 Klik tombol dibawah jika ingin langsung generate jadwal{" "}
@@ -103,22 +103,20 @@ function Pembina() {
                     <td colspan="2">Larry the Bird</td>
                     <td>@twitter</td>
                     <td>
-                      {" "}
                       <div class="d-flex justify-content-evenly">
-                        <a
-                          class="btn btn-success btn-sm"
-                          href="/histories/<%= data.id %>"
-                          role="button"
-                        >
-                          <i class="bi-eye-fill"></i> Lihat Detail
-                        </a>
-                        <a
+                        <Link to="/pembina/detail">
+                          <div class="btn btn-success btn-sm" role="button">
+                            <i class="bi-eye-fill"></i> Lihat Detail
+                          </div>
+                        </Link>
+
+                        <div
                           class="btn btn-primary btn-sm"
                           href="/histories/<%= data.id %>/edit"
                           role="button"
                         >
                           <i class="bi-pencil-fill"></i> Edit
-                        </a>
+                        </div>
                         <form
                           method="post"
                           action="/histories/<%= data.id %>?_method=DELETE"
@@ -137,9 +135,8 @@ function Pembina() {
                 </tbody>
               </table>
               <Link to="/pembina/create">
-              <button className="btn btn-primary">Tambah</button>
+                <button className="btn btn-primary">Tambah</button>
               </Link>
-              
             </div>
           </div>
 
