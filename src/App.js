@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import logo from "./logo.svg";
+
 import Dashboard from "./components/pages/dashboard/Dashboard";
 import Index from "./components/pages/home/Index";
 import Jadwal from "./components/pages/jadwal/Jadwal";

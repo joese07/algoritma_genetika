@@ -31,30 +31,30 @@ function Anggota() {
                     <td>Otto</td>
                     <td>@mdo</td>
                     <td>
-                      <div class="d-flex justify-content-evenly">
+                      <div className="d-flex justify-content-evenly">
                         <Link to="/anggota/detail">
-                          <div class="btn btn-success btn-sm" role="button">
-                            <i class="bi-eye-fill"></i> Lihat Detail
+                          <div className="btn btn-success btn-sm" role="button">
+                            <i className="bi-eye-fill"></i> Lihat Detail
                           </div>
                         </Link>
 
                         <a
-                          class="btn btn-primary btn-sm"
+                          className="btn btn-primary btn-sm"
                           href="/histories/<%= data.id %>/edit"
                           role="button"
                         >
-                          <i class="bi-pencil-fill"></i> Edit
+                          <i className="bi-pencil-fill"></i> Edit
                         </a>
                         <form
                           method="post"
                           action="/histories/<%= data.id %>?_method=DELETE"
                         >
                           <button
-                            class="btn btn-danger btn-sm"
+                            className="btn btn-danger btn-sm"
                             type="submit"
                             onclick="return confirm('apakah anda yakin hapus data ?');"
                           >
-                            <i class="bi-trash-fill"></i> Hapus
+                            <i className="bi-trash-fill"></i> Hapus
                           </button>
                         </form>
                       </div>
@@ -66,31 +66,31 @@ function Anggota() {
                     <td>Thornton</td>
                     <td>@fat</td>
                     <td>
-                      <div class="d-flex justify-content-evenly">
+                      <div className="d-flex justify-content-evenly">
                         <a
-                          class="btn btn-success btn-sm"
+                          className="btn btn-success btn-sm"
                           href="/histories/<%= data.id %>"
                           role="button"
                         >
-                          <i class="bi-eye-fill"></i> Lihat Detail
+                          <i className="bi-eye-fill"></i> Lihat Detail
                         </a>
                         <a
-                          class="btn btn-primary btn-sm"
+                          className="btn btn-primary btn-sm"
                           href="/histories/<%= data.id %>/edit"
                           role="button"
                         >
-                          <i class="bi-pencil-fill"></i> Edit
+                          <i className="bi-pencil-fill"></i> Edit
                         </a>
                         <form
                           method="post"
                           action="/histories/<%= data.id %>?_method=DELETE"
                         >
                           <button
-                            class="btn btn-danger btn-sm"
+                            className="btn btn-danger btn-sm"
                             type="submit"
                             onclick="return confirm('apakah anda yakin hapus data ?');"
                           >
-                            <i class="bi-trash-fill"></i> Hapus
+                            <i className="bi-trash-fill"></i> Hapus
                           </button>
                         </form>
                       </div>
@@ -102,31 +102,31 @@ function Anggota() {
                     <td>@twitter</td>
                     <td>
                       {" "}
-                      <div class="d-flex justify-content-evenly">
+                      <div className="d-flex justify-content-evenly">
                         <a
-                          class="btn btn-success btn-sm"
+                          className="btn btn-success btn-sm"
                           href="/histories/<%= data.id %>"
                           role="button"
                         >
-                          <i class="bi-eye-fill"></i> Lihat Detail
+                          <i className="bi-eye-fill"></i> Lihat Detail
                         </a>
                         <a
-                          class="btn btn-primary btn-sm"
+                          className="btn btn-primary btn-sm"
                           href="/histories/<%= data.id %>/edit"
                           role="button"
                         >
-                          <i class="bi-pencil-fill"></i> Edit
+                          <i className="bi-pencil-fill"></i> Edit
                         </a>
                         <form
                           method="post"
                           action="/histories/<%= data.id %>?_method=DELETE"
                         >
                           <button
-                            class="btn btn-danger btn-sm"
+                            className="btn btn-danger btn-sm"
                             type="submit"
                             onclick="return confirm('apakah anda yakin hapus data ?');"
                           >
-                            <i class="bi-trash-fill"></i> Hapus
+                            <i className="bi-trash-fill"></i> Hapus
                           </button>
                         </form>
                       </div>
