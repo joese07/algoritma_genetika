@@ -3,20 +3,20 @@ import { gql, useMutation, useQuery } from "@apollo/client";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-// const getPembina = gql`
-//   query MyQuery {
-//     Data_Pembina {
-//       id
-//       nama
-//       tempat_lahir
-//       tanggal_lahir
-//       jenis_kelamin
-//       alamat_email
-//       no_telepon
-//       alamat
-//     }
-//   }
-// `;
+const getPembina = gql`
+  query MyQuery {
+    Data_Pembina {
+      id
+      nama
+      tempat_lahir
+      tanggal_lahir
+      jenis_kelamin
+      alamat_email
+      no_telepon
+      alamat
+    }
+  }
+`;
 
 const insertPembina = gql`
   mutation InsertPembina(
@@ -44,8 +44,7 @@ const insertPembina = gql`
   }
 `;
 
-function CreatePembina(getPembina) {
-
+function CreatePembina() {
   const [dataNama, setDataNama] = useState("");
   const [dataTempatLahir, setTempatLahir] = useState("");
   const [dataTanggalLahir, setTanggalLahir] = useState("");
@@ -54,8 +53,8 @@ function CreatePembina(getPembina) {
   const [dataNoTelepon, setNoTelepon] = useState("");
   const [dataAlamatEmail, setAlamatEmail] = useState("");
 
-  // const {data : dataPembina} = useQuery(getPembina);
-  // console.log(dataPembina)
+  const { data: dataPembina } = useQuery(getPembina);
+  console.log(dataPembina);
 
   const [InsertPembina, { loading, data }] = useMutation(insertPembina, {
     refetchQueries: [getPembina],
@@ -101,14 +100,14 @@ function CreatePembina(getPembina) {
         alamat: dataAlamat,
       },
     });
-   };
+  };
 
   if (loading) return <p>Loading...</p>;
   if (data)
     return (
       <p>
         Data berhasil disimpan{" "}
-        <Link to="../pembina"> 
+        <Link to="../pembina">
           <button>OK</button>
         </Link>
       </p>

@@ -1,51 +1,48 @@
 import Sidebar from "../../partials/Sidebar";
 import { Link } from "react-router-dom";
-import { gql , useMutation, useQuery } from "@apollo/client";
+import { gql, useMutation, useQuery } from "@apollo/client";
 
 const getPembina = gql`
-query MyQuery {
-  Data_Pembina {
-    id
-    nama
-    tempat_lahir
-    tanggal_lahir
-    jenis_kelamin
-    alamat_email
-    no_telepon
-    alamat
-  }
-}`;
-
-
-const deletePembina = gql`
-mutation Delete($id: Int) {
-  delete_Data_Pembina(where: {id: {_eq: $id}}) {
-    returning {
+  query MyQuery {
+    Data_Pembina {
       id
       nama
       tempat_lahir
       tanggal_lahir
       jenis_kelamin
-      no_telepon
       alamat_email
+      no_telepon
       alamat
     }
-    affected_rows
   }
-}
 `;
 
-function Pembina () {
-  // const [id, setId] = useState()
-  const { data: dataPembina } = useQuery(getPembina)
-  
-  const [deleteData] = useMutation(
-    deletePembina,
-    {
-      refetchQueries:[getPembina],
+const deletePembina = gql`
+  mutation Delete($id: Int) {
+    delete_Data_Pembina(where: { id: { _eq: $id } }) {
+      returning {
+        id
+        nama
+        tempat_lahir
+        tanggal_lahir
+        jenis_kelamin
+        no_telepon
+        alamat_email
+        alamat
+      }
+      affected_rows
     }
-    ); 
-  
+  }
+`;
+
+function Pembina() {
+  // const [id, setId] = useState()
+  const { data: dataPembina } = useQuery(getPembina);
+
+  const [deleteData] = useMutation(deletePembina, {
+    refetchQueries: [getPembina],
+  });
+
   return (
     <div>
       <main className="d-flex flex-nowrap">
@@ -68,47 +65,41 @@ function Pembina () {
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
-                <tbody style={{ textAlign:"center"}}>
-                  
-                {dataPembina.Data_Pembina.map((data) => (
+                <tbody style={{ textAlign: "center" }}>
+                  {dataPembina.Data_Pembina.map((data) => (
+                    <tr>
+                      <th>{data.id}</th>
+                      <td>{data.nama}</td>
+                      <td>{data.no_telepon}</td>
+                      <td>{data.alamat_email}</td>
+                      <td>
+                        <div class="d-flex justify-content-evenly">
+                          <Link to={`/pembina/detail/${data.id}`}>
+                            <div class="btn btn-success btn-sm" role="button">
+                              <i class="bi-eye-fill"></i> Lihat Detail
+                            </div>
+                          </Link>
 
-                   <tr>
-                  <th>{data.id}</th>
-                  <td>{data.nama}</td>
-                  <td>{data.no_telepon}</td>
-                  <td>{data.alamat_email}</td>
-                  <td>
-                    <div class="d-flex justify-content-evenly">
-                      <a
-                        class="btn btn-success btn-sm"
-                        href="/pembina/detail"
-                        role="button"
-                      >
-                        <i class="bi-eye-fill"></i> Lihat Detail
-                      </a>
-                      <a
-                        class="btn btn-primary btn-sm"
-                        href="/histories/<%= data.id %>/edit"
-                        role="button"
-                      >
-                        <i class="bi-pencil-fill"></i> Edit
-                      </a>
-                        <button
-                          class="btn btn-danger btn-sm"
-                          type="submit"
-                          onClick={() => {
-                            deleteData({ variables: { id: data.id }});
-                    }}
-                        >
-                          <i class="bi-trash-fill"></i> Hapus
-                        </button>
-                      
-                    </div>
-                  </td>
-                </tr>
-                 
-                ))} 
-     
+                          <a
+                            class="btn btn-primary btn-sm"
+                            href="/histories/<%= data.id %>/edit"
+                            role="button"
+                          >
+                            <i class="bi-pencil-fill"></i> Edit
+                          </a>
+                          <button
+                            class="btn btn-danger btn-sm"
+                            type="submit"
+                            onClick={() => {
+                              deleteData({ variables: { id: data.id } });
+                            }}
+                          >
+                            <i class="bi-trash-fill"></i> Hapus
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
               <Link to="/pembina/create">
