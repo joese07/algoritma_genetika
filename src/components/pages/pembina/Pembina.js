@@ -1,52 +1,50 @@
 import Sidebar from "../../partials/Sidebar";
 import { Link } from "react-router-dom";
 import { gql , useMutation, useQuery } from "@apollo/client";
-import { useState } from "react";
 
-// const getPembina = gql`
-// query MyQuery {
-//   Data_Pembina {
-//     id
-//     nama
-//     tempat_lahir
-//     tanggal_lahir
-//     jenis_kelamin
-//     alamat_email
-//     no_telepon
-//     alamat
-//   }
-// }
-// `;
+const getPembina = gql`
+query MyQuery {
+  Data_Pembina {
+    id
+    nama
+    tempat_lahir
+    tanggal_lahir
+    jenis_kelamin
+    alamat_email
+    no_telepon
+    alamat
+  }
+}`;
 
-// const deletePembina = gql`
-// mutation MyMutation($id: Int) {
-//   delete_Data_Pembina(where: {id: {_eq: $id}}) {
-//     returning {
-//       id
-//       nama
-//       tempat_lahir
-//       tanggal_lahir
-//       jenis_kelamin
-//       no_telepon
-//       alamat_email
-//       alamat
-//     }
-//     affected_rows
-//   }
-// }
-// `;
 
-function Pembina (dataPembina) {
+const deletePembina = gql`
+mutation Delete($id: Int) {
+  delete_Data_Pembina(where: {id: {_eq: $id}}) {
+    returning {
+      id
+      nama
+      tempat_lahir
+      tanggal_lahir
+      jenis_kelamin
+      no_telepon
+      alamat_email
+      alamat
+    }
+    affected_rows
+  }
+}
+`;
+
+function Pembina () {
   // const [id, setId] = useState()
-  // const { data: dataPembina } = useQuery(getPembina)
-  console.log(dataPembina.dataPembina)
-
-  // const [deleteData] = useMutation(
-  //   deletePembina,
-  //   {
-  //     refetchQueries:[getPembina],
-  //   }
-  //   ); 
+  const { data: dataPembina } = useQuery(getPembina)
+  
+  const [deleteData] = useMutation(
+    deletePembina,
+    {
+      refetchQueries:[getPembina],
+    }
+    ); 
   
   return (
     <div>
@@ -72,7 +70,7 @@ function Pembina (dataPembina) {
                 </thead>
                 <tbody style={{ textAlign:"center"}}>
                   
-                {dataPembina.dataPembina.Data_Pembina.map((data) => (
+                {dataPembina.Data_Pembina.map((data) => (
 
                    <tr>
                   <th>{data.id}</th>
@@ -98,9 +96,9 @@ function Pembina (dataPembina) {
                         <button
                           class="btn btn-danger btn-sm"
                           type="submit"
-                    //       onClick={() => {
-                    //         deleteData({ variables: { id: data.id }});
-                    // }}
+                          onClick={() => {
+                            deleteData({ variables: { id: data.id }});
+                    }}
                         >
                           <i class="bi-trash-fill"></i> Hapus
                         </button>

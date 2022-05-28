@@ -59,8 +59,8 @@ function App() {
         <Route path="/" element={<Index />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/jadwal" element={<Jadwal />} />
-        <Route path="/pembina" element={<Pembina dataPembina={dataPembina}/>} />
-        <Route path="/pembina/create" element={<CreatePembina dataPembina={dataPembina}/>} />
+        <Route path="/pembina" element={<Pembina dataPembina={dataPembina} getPembina={getPembina}/>} />
+        <Route path="/pembina/create" element={<CreatePembina getPembina/>} />
         <Route path="/pembina/detail" element={<Detail/>}/>
         <Route path="/anggota" element={<Anggota />} />
         <Route path="/anggota/create" element={<CreateAnggota />} />
