@@ -1,7 +1,53 @@
 import Sidebar from "../../partials/Sidebar";
 import { Link } from "react-router-dom";
+import { gql , useMutation, useQuery } from "@apollo/client";
+import { useState } from "react";
 
-function Pembina() {
+// const getPembina = gql`
+// query MyQuery {
+//   Data_Pembina {
+//     id
+//     nama
+//     tempat_lahir
+//     tanggal_lahir
+//     jenis_kelamin
+//     alamat_email
+//     no_telepon
+//     alamat
+//   }
+// }
+// `;
+
+// const deletePembina = gql`
+// mutation MyMutation($id: Int) {
+//   delete_Data_Pembina(where: {id: {_eq: $id}}) {
+//     returning {
+//       id
+//       nama
+//       tempat_lahir
+//       tanggal_lahir
+//       jenis_kelamin
+//       no_telepon
+//       alamat_email
+//       alamat
+//     }
+//     affected_rows
+//   }
+// }
+// `;
+
+function Pembina (dataPembina) {
+  // const [id, setId] = useState()
+  // const { data: dataPembina } = useQuery(getPembina)
+  console.log(dataPembina.dataPembina)
+
+  // const [deleteData] = useMutation(
+  //   deletePembina,
+  //   {
+  //     refetchQueries:[getPembina],
+  //   }
+  //   ); 
+  
   return (
     <div>
       <main className="d-flex flex-nowrap">
@@ -17,121 +63,54 @@ function Pembina() {
               <table className="table table-hover">
                 <thead>
                   <tr style={{ textAlign: "center" }}>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nama</th>
+                    <th scope="col">No_Telepon</th>
+                    <th scope="col">Email</th>
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>
-                      {" "}
-                      <div class="d-flex justify-content-evenly">
-                        <a
-                          class="btn btn-success btn-sm"
-                          href="/histories/<%= data.id %>"
-                          role="button"
-                        >
-                          <i class="bi-eye-fill"></i> Lihat Detail
-                        </a>
-                        <a
-                          class="btn btn-primary btn-sm"
-                          href="/histories/<%= data.id %>/edit"
-                          role="button"
-                        >
-                          <i class="bi-pencil-fill"></i> Edit
-                        </a>
-                        <form
-                          method="post"
-                          action="/histories/<%= data.id %>?_method=DELETE"
-                        >
-                          <button
-                            class="btn btn-danger btn-sm"
-                            type="submit"
-                            onclick="return confirm('apakah anda yakin hapus data ?');"
-                          >
-                            <i class="bi-trash-fill"></i> Hapus
-                          </button>
-                        </form>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td>
-                      <div class="d-flex justify-content-evenly">
-                        <a
-                          class="btn btn-success btn-sm"
-                          href="/histories/<%= data.id %>"
-                          role="button"
-                        >
-                          <i class="bi-eye-fill"></i> Lihat Detail
-                        </a>
-                        <a
-                          class="btn btn-primary btn-sm"
-                          href="/histories/<%= data.id %>/edit"
-                          role="button"
-                        >
-                          <i class="bi-pencil-fill"></i> Edit
-                        </a>
-                        <form
-                          method="post"
-                          action="/histories/<%= data.id %>?_method=DELETE"
-                        >
-                          <button
-                            class="btn btn-danger btn-sm"
-                            type="submit"
-                            onclick="return confirm('apakah anda yakin hapus data ?');"
-                          >
-                            <i class="bi-trash-fill"></i> Hapus
-                          </button>
-                        </form>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                    <td>
-                      <div class="d-flex justify-content-evenly">
-                        <Link to="/pembina/detail">
-                          <div class="btn btn-success btn-sm" role="button">
-                            <i class="bi-eye-fill"></i> Lihat Detail
-                          </div>
-                        </Link>
+                <tbody style={{ textAlign:"center"}}>
+                  
+                {dataPembina.dataPembina.Data_Pembina.map((data) => (
 
-                        <div
-                          class="btn btn-primary btn-sm"
-                          href="/histories/<%= data.id %>/edit"
-                          role="button"
+                   <tr>
+                  <th>{data.id}</th>
+                  <td>{data.nama}</td>
+                  <td>{data.no_telepon}</td>
+                  <td>{data.alamat_email}</td>
+                  <td>
+                    <div class="d-flex justify-content-evenly">
+                      <a
+                        class="btn btn-success btn-sm"
+                        href="/pembina/detail"
+                        role="button"
+                      >
+                        <i class="bi-eye-fill"></i> Lihat Detail
+                      </a>
+                      <a
+                        class="btn btn-primary btn-sm"
+                        href="/histories/<%= data.id %>/edit"
+                        role="button"
+                      >
+                        <i class="bi-pencil-fill"></i> Edit
+                      </a>
+                        <button
+                          class="btn btn-danger btn-sm"
+                          type="submit"
+                    //       onClick={() => {
+                    //         deleteData({ variables: { id: data.id }});
+                    // }}
                         >
-                          <i class="bi-pencil-fill"></i> Edit
-                        </div>
-                        <form
-                          method="post"
-                          action="/histories/<%= data.id %>?_method=DELETE"
-                        >
-                          <button
-                            class="btn btn-danger btn-sm"
-                            type="submit"
-                            onclick="return confirm('apakah anda yakin hapus data ?');"
-                          >
-                            <i class="bi-trash-fill"></i> Hapus
-                          </button>
-                        </form>
-                      </div>
-                    </td>
-                  </tr>
+                          <i class="bi-trash-fill"></i> Hapus
+                        </button>
+                      
+                    </div>
+                  </td>
+                </tr>
+                 
+                ))} 
+     
                 </tbody>
               </table>
               <Link to="/pembina/create">
