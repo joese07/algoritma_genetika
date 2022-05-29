@@ -1,21 +1,22 @@
 import Sidebar from "../../partials/Sidebar";
 import { Link } from "react-router-dom";
 import { gql, useMutation, useQuery } from "@apollo/client";
+import useDataPembina from "../../../hooks/useDataPembina";
 
-const getPembina = gql`
-  query MyQuery {
-    Data_Pembina {
-      id
-      nama
-      tempat_lahir
-      tanggal_lahir
-      jenis_kelamin
-      alamat_email
-      no_telepon
-      alamat
-    }
-  }
-`;
+// const getPembina = gql`
+//   query MyQuery {
+//     Data_Pembina {
+//       id
+//       nama
+//       tempat_lahir
+//       tanggal_lahir
+//       jenis_kelamin
+//       alamat_email
+//       no_telepon
+//       alamat
+//     }
+//   }
+// `;
 
 const deletePembina = gql`
   mutation Delete($id: Int) {
@@ -37,11 +38,14 @@ const deletePembina = gql`
 
 function Pembina() {
   // const [id, setId] = useState()
-  const { data: dataPembina } = useQuery(getPembina);
 
-  const [deleteData] = useMutation(deletePembina, {
-    refetchQueries: [getPembina],
-  });
+  const {error, loading, data} = useDataPembina();
+
+  if(loading) return <div>Spinner...</div>;
+  if(error) return <div>something went wrong</div>;
+  // const [deleteData] = useMutation(deletePembina, {
+  //   refetchQueries: [getPembina],
+  // });
 
   return (
     <div>
@@ -66,15 +70,15 @@ function Pembina() {
                   </tr>
                 </thead>
                 <tbody style={{ textAlign: "center" }}>
-                  {dataPembina.Data_Pembina.map((data) => (
+                  {data.Data_Pembina.map((pembina) => (
                     <tr>
-                      <th>{data.id}</th>
-                      <td>{data.nama}</td>
-                      <td>{data.no_telepon}</td>
-                      <td>{data.alamat_email}</td>
+                      <th>{pembina.id}</th>
+                      <td>{pembina.nama}</td>
+                      <td>{pembina.no_telepon}</td>
+                      <td>{pembina.alamat_email}</td>
                       <td>
                         <div class="d-flex justify-content-evenly">
-                          <Link to={`/pembina/detail/${data.id}`}>
+                          <Link to={`/pembina/detail/${pembina.id}`}>
                             <div class="btn btn-success btn-sm" role="button">
                               <i class="bi-eye-fill"></i> Lihat Detail
                             </div>
@@ -90,9 +94,9 @@ function Pembina() {
                           <button
                             class="btn btn-danger btn-sm"
                             type="submit"
-                            onClick={() => {
-                              deleteData({ variables: { id: data.id } });
-                            }}
+                            // onClick={() => {
+                            //   deleteData({ variables: { id: data.id } });
+                            // }}
                           >
                             <i class="bi-trash-fill"></i> Hapus
                           </button>

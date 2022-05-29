@@ -8,50 +8,9 @@ import Anggota from "./components/pages/anggota/Anggota";
 import CreateAnggota from "./components/pages/anggota/CreateAnggota";
 import Detail from "./components/pages/pembina/DetailPembina";
 import DetailAnggota from "./components/pages/anggota/DetailAnggota";
-import { gql, useMutation, useQuery } from "@apollo/client";
+import useDataPembina from "./hooks/useDataPembina";
 
-const getPembina = gql`
-query MyQuery {
-  Data_Pembina {
-    id
-    nama
-    tempat_lahir
-    tanggal_lahir
-    jenis_kelamin
-    alamat_email
-    no_telepon
-    alamat
-  }
-}`;
-
-const insertPembina = gql`
-mutation InsertPembina(
-  $alamat: String
-  $alamat_email: String
-  $jenis_kelamin: String
-  $nama: String
-  $no_telepon: String
-  $tanggal_lahir: String
-  $tempat_lahir: String
-) {
-  insert_Data_Pembina(
-    objects: {
-      nama: $nama
-      tempat_lahir: $tempat_lahir
-      tanggal_lahir: $tanggal_lahir
-      jenis_kelamin: $jenis_kelamin
-      alamat: $alamat
-      no_telepon: $no_telepon
-      alamat_email: $alamat_email
-    }
-  ) {
-    affected_rows
-  }
-}`;
-  
 function App() {
-  const {data:dataPembina} = useQuery(getPembina);
-  
   
   return (
     <BrowserRouter>
@@ -59,9 +18,9 @@ function App() {
         <Route path="/" element={<Index />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/jadwal" element={<Jadwal />} />
-        <Route path="/pembina" element={<Pembina dataPembina={dataPembina} getPembina={getPembina}/>} />
-        <Route path="/pembina/create" element={<CreatePembina getPembina/>} />
-        <Route path="/pembina/detail" element={<Detail/>}/>
+        <Route path="/pembina" element={<Pembina/>} />
+        <Route path="/pembina/create" element={<CreatePembina/>} />
+        <Route path="/pembina/detail/:id" element={<Detail/>} component={Pembina}/>
         <Route path="/anggota" element={<Anggota />} />
         <Route path="/anggota/create" element={<CreateAnggota />} />
         <Route path="/anggota/detail" element={<DetailAnggota />} />
