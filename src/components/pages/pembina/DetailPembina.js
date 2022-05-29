@@ -27,17 +27,17 @@ function DetailPembina() {
 
   const {data, loading, error} = useDataPembinaa(id);
 
-  console.log(
+  console.log({
     error,
     loading,
-    data.Data_Pembina.nama)
+    data})
 
   if(error) return <div>something went wrong</div>
   if(loading) return<div>spiner</div>
 
   return (
     <div>
-      <h3>hahahah</h3>
+
       <main className="d-flex flex-nowrap">
         <Sidebar />
         <div className="b-example-divider b-example-vr" />
@@ -48,53 +48,52 @@ function DetailPembina() {
               <p className="col-md-8 fs-4">Nama Pembina : </p>
  
               <table className="table table-hover">
-              
-                <thead>
-                  <tr>
+              {data.Data_Pembina.map((pembina)=> ( 
+                <tbody>
+                    <tr>
                     <th scope="col">Nama Lengkap </th>
                     <td> : </td>
-                    <td>{data.Data_Pembina.nama}</td>
+                    <td>{pembina.nama}</td>
                   </tr>
-                </thead>
-                <tbody>
+                
                   <tr>
                     <th scope="row">Tempat Lahir </th>
                     <td> : </td>
-                    <td>{data.Data_Pembina.tempat_lahir}</td>
+                    <td>{pembina.tempat_lahir}</td>
                   </tr>
                   <tr>
                     <th scope="row">Tanggal Lahir</th>
                     <td> : </td>
-                    <td>{data.Data_Pembina.tanggal_lahir}</td>
+                    <td>{pembina.tanggal_lahir}</td>
                   </tr>
                   <tr>
                     <th scope="row">Jenis Kelamin</th>
                     <td> : </td>
-                    <td>{data.Data_Pembina.jenis_kelamin}</td>
+                    <td>{pembina.jenis_kelamin}</td>
                   </tr>
                   <tr>
                     <th scope="row">Alamat </th>
                     <td> : </td>
-                    <td>{data.Data_Pembina.alamat}
+                    <td>{pembina.alamat}
                     </td>
                   </tr>
                   <tr>
                     <th scope="row">No telepon</th>
                     <td> : </td>
-                    <td>{data.Data_Pembina.no_telepon}</td>
+                    <td>{pembina.no_telepon}</td>
                   </tr>
                   <tr>
                     <th scope="row">Email </th>
                     <td> : </td>
-                    <td>{data.Data_Pembina.alamat_email}</td>
+                    <td>{pembina.alamat_email}</td>
                   </tr>
                   <tr>
                     <th scope="row">Jadwal </th>
                     <td> : </td>
                     <td>Kamis </td>
                   </tr>
-                  
                 </tbody>
+                ))}
               </table>
               
               <Link to="/pembina">
