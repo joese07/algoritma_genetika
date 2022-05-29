@@ -143,7 +143,7 @@ function Sidebar() {
                     ? "active"
                     : "" || url === "/pembina/create"
                     ? "active"
-                    : "" || url === "/pembina/detail"
+                    : "" || url === "/pembina/detail/"
                     ? "active"
                     : "")
                 }

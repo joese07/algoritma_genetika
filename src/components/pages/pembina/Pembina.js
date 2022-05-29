@@ -3,24 +3,10 @@ import { Link } from "react-router-dom";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import useDataPembina from "../../../hooks/useDataPembina";
 
-// const getPembina = gql`
-//   query MyQuery {
-//     Data_Pembina {
-//       id
-//       nama
-//       tempat_lahir
-//       tanggal_lahir
-//       jenis_kelamin
-//       alamat_email
-//       no_telepon
-//       alamat
-//     }
-//   }
-// `;
-
 const deletePembina = gql`
   mutation Delete($id: Int) {
     delete_Data_Pembina(where: { id: { _eq: $id } }) {
+      affected_rows
       returning {
         id
         nama
@@ -31,7 +17,6 @@ const deletePembina = gql`
         alamat_email
         alamat
       }
-      affected_rows
     }
   }
 `;
@@ -40,12 +25,16 @@ function Pembina() {
   // const [id, setId] = useState()
 
   const {error, loading, data} = useDataPembina();
+;
+  const [deleteData,{loading:loadingDelete}] = useMutation(deletePembina, {
+    refetchQueries: [data],
+  });
 
+  
   if(loading) return <div>Spinner...</div>;
   if(error) return <div>something went wrong</div>;
-  // const [deleteData] = useMutation(deletePembina, {
-  //   refetchQueries: [getPembina],
-  // });
+
+  if(loadingDelete) return <div>Proses Hapus data</div>
 
   return (
     <div>
@@ -62,6 +51,7 @@ function Pembina() {
               <table className="table table-hover">
                 <thead>
                   <tr style={{ textAlign: "center" }}>
+                    <th scope="col">No</th>
                     <th scope="col">ID</th>
                     <th scope="col">Nama</th>
                     <th scope="col">No_Telepon</th>
@@ -70,8 +60,9 @@ function Pembina() {
                   </tr>
                 </thead>
                 <tbody style={{ textAlign: "center" }}>
-                  {data.Data_Pembina.map((pembina) => (
+                  {data.Data_Pembina.map((pembina, index) => (
                     <tr>
+                      <th>{index + 1}</th>
                       <th>{pembina.id}</th>
                       <td>{pembina.nama}</td>
                       <td>{pembina.no_telepon}</td>
@@ -94,9 +85,7 @@ function Pembina() {
                           <button
                             class="btn btn-danger btn-sm"
                             type="submit"
-                            // onClick={() => {
-                            //   deleteData({ variables: { id: data.id } });
-                            // }}
+                            onClick={()=>{deleteData({ variables: {id : pembina.id}})}}
                           >
                             <i class="bi-trash-fill"></i> Hapus
                           </button>
