@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Sidebar from "../../partials/Sidebar";
 
-function DetailAnggota() {
+function DetailShift() {
   return (
     <div>
       <main className="d-flex flex-nowrap">
@@ -74,4 +74,4 @@ function DetailAnggota() {
   );
 }
 
-export default DetailAnggota;
+export default DetailShift;

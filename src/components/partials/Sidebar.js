@@ -1,8 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
-
-
 function Sidebar() {
   const location = useLocation();
   const [url, setUrl] = useState(null);
@@ -119,6 +117,90 @@ function Sidebar() {
                 </div>
               </Link>
             </li>
+
+            <li>
+              <Link
+                to="/pembina"
+                className={
+                  "nav-link link-dark" +
+                  (url === "/pembina"
+                    ? "active"
+                    : "" || url === "/pembina/create"
+                    ? "active"
+                    : "" || url === "/pembina/detail/"
+                    ? "active"
+                    : "")
+                }
+              >
+                <div aria-current="page">
+                  <svg className="bi pe-none me-2" width={16} height={16}>
+                    <use xlinkHref="#people-circle" />
+                  </svg>
+                  Data Pembina
+                </div>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/shift"
+                className={
+                  "nav-link link-dark" +
+                  (url === "/shift"
+                    ? "active"
+                    : "" || url === "/shift/create"
+                    ? "active"
+                    : "" || url === "/shift/detail"
+                    ? "active"
+                    : "")
+                }
+              >
+                <div aria-current="page">
+                  <svg className="bi pe-none me-2" width={16} height={16}>
+                    <use xlinkHref="#people-circle" />
+                  </svg>
+                  Data Shift
+                </div>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/ruangan"
+                className={
+                  "nav-link link-dark" +
+                  (url === "/ruangan"
+                    ? "active"
+                    : "" || url === "/ruangan/create"
+                    ? "active"
+                    : "" || url === "/ruangan/detail"
+                    ? "active"
+                    : "")
+                }
+              >
+                <div aria-current="page">
+                  <svg className="bi pe-none me-2" width={16} height={16}>
+                    <use xlinkHref="#people-circle" />
+                  </svg>
+                  Data Ruangan
+                </div>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/create_jadwal"
+                className={
+                  "nav-link link-dark" +
+                  (url === "/create_jadwal" ? "active" : "")
+                }
+              >
+                <div aria-current="page">
+                  <svg className="bi pe-none me-2" width={16} height={16}>
+                    <use xlinkHref="#people-circle" />
+                  </svg>
+                  Data Permintaan Jadwal
+                </div>
+              </Link>
+            </li>
+
             <li>
               <Link
                 to="/jadwal"
@@ -136,45 +218,33 @@ function Sidebar() {
             </li>
             <li>
               <Link
-                to="/pembina"
+                to="/jadwal_pembina"
                 className={
                   "nav-link link-dark" +
-                  (url === "/pembina"
-                    ? "active"
-                    : "" || url === "/pembina/create"
-                    ? "active"
-                    : "" || url === "/pembina/detail/"
-                    ? "active"
-                    : "")
+                  (url === "/jadwal_pembina" ? "active" : "")
                 }
               >
                 <div aria-current="page">
                   <svg className="bi pe-none me-2" width={16} height={16}>
-                    <use xlinkHref="#grid" />
+                    <use xlinkHref="#table" />
                   </svg>
-                  Data Pembina
+                  Jadwal Pembina
                 </div>
               </Link>
             </li>
             <li>
               <Link
-                to="/anggota"
+                to="/jadwal_proses"
                 className={
                   "nav-link link-dark" +
-                  (url === "/anggota"
-                    ? "active"
-                    : "" || url === "/anggota/create"
-                    ? "active"
-                    : "" || url === "/anggota/detail"
-                    ? "active"
-                    : "")
+                  (url === "/jadwal_proses" ? "active" : "")
                 }
               >
                 <div aria-current="page">
                   <svg className="bi pe-none me-2" width={16} height={16}>
-                    <use xlinkHref="#people-circle" />
+                    <use xlinkHref="#table" />
                   </svg>
-                  Data Anggota
+                  Proses Penjadwalan
                 </div>
               </Link>
             </li>

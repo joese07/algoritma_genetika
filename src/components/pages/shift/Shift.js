@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Sidebar from "../../partials/Sidebar";
 
-function Anggota() {
+function Shift() {
   return (
     <div>
       <main className="d-flex flex-nowrap">
@@ -147,4 +147,4 @@ function Anggota() {
   );
 }
 
-export default Anggota;
+export default Shift;

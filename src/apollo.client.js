@@ -4,7 +4,7 @@ import { createClient } from "graphql-ws";
 import { getMainDefinition } from "@apollo/client/utilities";
 
 const httpLink = new HttpLink({
-  uri: "https://guiding-reptile-80.hasura.app/v1/graphql",
+  uri: "https://project-skripsi.hasura.app/v1/graphql",
   headers: {
     "x-hasura-admin-secret":
       "8mBWVZsTp07OzEtAps12jjW9wws4XGqFu16Yyeakrqnr0Cn9a1cKp9PTVT0hwvNE",
@@ -13,7 +13,7 @@ const httpLink = new HttpLink({
 
 const wsLink = new GraphQLWsLink(
   createClient({
-    url: "https://guiding-reptile-80.hasura.app/v1/graphql",
+    url: "https://project-skripsi.hasura.app/v1/graphql",
     connectionParams: {
       headers: {
         "x-hasura-admin-secret":

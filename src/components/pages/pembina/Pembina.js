@@ -1,7 +1,8 @@
 import Sidebar from "../../partials/Sidebar";
 import { Link } from "react-router-dom";
-import { gql, useMutation, useQuery } from "@apollo/client";
-import useDataPembina from "../../../hooks/useDataPembina";
+import { gql, useMutation } from "@apollo/client";
+import CreatePembina from "./CreatePembina";
+import useGetPembina from "../../../graphql/GetPembina";
 
 const deletePembina = gql`
   mutation Delete($id: Int) {
@@ -24,17 +25,11 @@ const deletePembina = gql`
 function Pembina() {
   // const [id, setId] = useState()
 
-  const {error, loading, data} = useDataPembina();
-;
-  const [deleteData,{loading:loadingDelete}] = useMutation(deletePembina, {
-    refetchQueries: [data],
-  });
+  const { error, loading, data } = useGetPembina();
+  if (loading) return <div>Spinner...</div>;
+  if (error) return <div>something went wrong</div>;
 
-  
-  if(loading) return <div>Spinner...</div>;
-  if(error) return <div>something went wrong</div>;
-
-  if(loadingDelete) return <div>Proses Hapus data</div>
+  const dataPembina = data.Data_Pembina;
 
   return (
     <div>
@@ -46,7 +41,8 @@ function Pembina() {
             <div className="container-fluid py-3">
               <h1 className="display-5 fw-bold">Halaman Data Pembina</h1>
               <p className="col-md-8 fs-4">
-                Klik tombol dibawah jika ingin langsung generate jadwal{" "}
+                Klik tombol tambah dibawah jika ingin langsung tambah data
+                pembina
               </p>
               <table className="table table-hover">
                 <thead>
@@ -60,7 +56,7 @@ function Pembina() {
                   </tr>
                 </thead>
                 <tbody style={{ textAlign: "center" }}>
-                  {data.Data_Pembina.map((pembina, index) => (
+                  {dataPembina.map((pembina, index) => (
                     <tr>
                       <th>{index + 1}</th>
                       <th>{pembina.id}</th>
@@ -74,18 +70,17 @@ function Pembina() {
                               <i class="bi-eye-fill"></i> Lihat Detail
                             </div>
                           </Link>
-
-                          <a
-                            class="btn btn-primary btn-sm"
-                            href="/histories/<%= data.id %>/edit"
-                            role="button"
-                          >
-                            <i class="bi-pencil-fill"></i> Edit
-                          </a>
+                          <Link to={`/pembina/edit/${pembina.id}`}>
+                            <div class="btn btn-primary btn-sm" role="button">
+                              <i class="bi-pencil-fill"></i> Edit
+                            </div>
+                          </Link>
                           <button
                             class="btn btn-danger btn-sm"
                             type="submit"
-                            onClick={()=>{deleteData({ variables: {id : pembina.id}})}}
+                            // onClick={() => {
+                            //   deleteData({ variables: { id: pembina.id } });
+                            // }}
                           >
                             <i class="bi-trash-fill"></i> Hapus
                           </button>
@@ -95,9 +90,41 @@ function Pembina() {
                   ))}
                 </tbody>
               </table>
-              <Link to="/pembina/create">
-                <button className="btn btn-primary">Tambah</button>
-              </Link>
+              <button
+                type="button"
+                className="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#formInput"
+                data-bs-whatever="@mdo"
+              >
+                Buat Data Pembina Baru
+              </button>
+              <div
+                className="modal fade"
+                id="formInput"
+                tabIndex={-1}
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div className="modal-dialog modal-lg">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <h5 className="modal-title" id="exampleModalLabel">
+                        Input Data Baru
+                      </h5>
+                      <button
+                        type="button"
+                        className="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      />
+                    </div>
+                    <div className="modal-body">
+                      <CreatePembina />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
