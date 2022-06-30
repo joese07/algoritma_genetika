@@ -2,6 +2,7 @@ import Sidebar from "../../partials/Sidebar";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import useGetLokasi from "../../../graphql/GetLokasi";
 
 const getPembina = gql`
   query MyQuery {
@@ -27,6 +28,8 @@ const insertPembina = gql`
     $no_telepon: String
     $tanggal_lahir: String
     $tempat_lahir: String
+    $lokasi: String
+    $kualitas: String
   ) {
     insert_Data_Pembina(
       objects: {
@@ -37,6 +40,8 @@ const insertPembina = gql`
         alamat: $alamat
         no_telepon: $no_telepon
         alamat_email: $alamat_email
+        lokasi: $lokasi
+        kualitas: $kualitas
       }
     ) {
       affected_rows
@@ -52,10 +57,15 @@ function CreatePembina() {
   const [dataAlamat, setAlamat] = useState("");
   const [dataNoTelepon, setNoTelepon] = useState("");
   const [dataAlamatEmail, setAlamatEmail] = useState("");
+  const [dataKualitas, setKualitas] = useState("");
+  const [dataLokasi, setLokasi] = useState("");
 
   const { data: dataPembina } = useQuery(getPembina);
   console.log(dataPembina);
-  console.log(getPembina)
+  console.log(getPembina);
+
+  const { data: queryLokasi } = useGetLokasi();
+  const dataQueryLokasi = queryLokasi.Data_Lokasi;
 
   const [InsertPembina, { loading, data }] = useMutation(insertPembina, {
     refetchQueries: [getPembina],
@@ -89,6 +99,14 @@ function CreatePembina() {
     setAlamatEmail(e.target.value);
   };
 
+  const handleKualitas = (e) => {
+    setKualitas(e.target.value);
+  };
+
+  const handleLokasi = (e) => {
+    setLokasi(e.target.value);
+  };
+
   const handleClickSubmit = () => {
     InsertPembina({
       variables: {
@@ -99,6 +117,8 @@ function CreatePembina() {
         alamat_email: dataAlamatEmail,
         no_telepon: dataNoTelepon,
         alamat: dataAlamat,
+        lokasi: dataLokasi,
+        kualitas: dataKualitas,
       },
     });
   };
@@ -206,6 +226,36 @@ function CreatePembina() {
                     onChange={handleChangeAlamatEmail}
                     required
                   />
+                </div>
+                <div class="mb-3">
+                  <label className="form-label">Kualitas</label>
+                  <select
+                    class="form-select"
+                    onChange={handleKualitas}
+                    id="lokasi"
+                    name="lokasi"
+                  >
+                    <option selected>Choose...</option>
+                    <option value="Kurang">Kurang</option>
+                    <option value="Cukup">Cukup</option>
+                    <option value="Baik">Baik</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label className="form-label">Lokasi</label>
+                  <select
+                    class="form-select"
+                    onChange={handleLokasi}
+                    id="lokasi"
+                    name="lokasi"
+                  >
+                    <option selected>Choose...</option>{" "}
+                    {dataQueryLokasi.map((data) => (
+                      <option value={data.nama_lokasi}>
+                        {data.nama_lokasi}
+                      </option>
+                    ))}
+                  </select>
                 </div>
                 <div className="mb-3 form-check">
                   <input

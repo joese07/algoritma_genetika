@@ -1,61 +1,79 @@
 import { useState } from "react";
 import { gql, useMutation } from "@apollo/client";
 import useGetShift from "../../../graphql/GetShift";
+import useGetLokasi from "../../../graphql/GetLokasi";
 
 const insertShift = gql`
-mutation Tambah_shift($kode_shift: String, $lokasi: String, $nama_shift: String, $waktu_mulai: String , $waktu_selesai: String) {
-  insert_Data_Shift(objects: {kode_shift: $kode_shift, nama_shift: $nama_shift, waktu_mulai: $waktu_mulai, waktu_selesai: $waktu_selesai, lokasi: $lokasi}) {
-    returning {
-      id
-      kode_shift
-      nama_shift
-      waktu_mulai
-      waktu_selesai
-      lokasi
+  mutation Tambah_shift(
+    $kode_shift: String
+    $lokasi: String
+    $nama_shift: String
+    $waktu_mulai: String
+    $waktu_selesai: String
+  ) {
+    insert_Data_Shift(
+      objects: {
+        kode_shift: $kode_shift
+        nama_shift: $nama_shift
+        waktu_mulai: $waktu_mulai
+        waktu_selesai: $waktu_selesai
+        lokasi: $lokasi
+      }
+    ) {
+      returning {
+        id
+        kode_shift
+        nama_shift
+        waktu_mulai
+        waktu_selesai
+        lokasi
+      }
+      affected_rows
     }
-    affected_rows
   }
-}
 `;
 
 function CreateShift() {
   const [dataKodeShift, setKodeShift] = useState("");
-  const [dataNamaShift, setNamaShift] = useState("")
+  const [dataNamaShift, setNamaShift] = useState("");
   const [dataMulai, setMulai] = useState("");
   const [dataSelesai, setSelesai] = useState("");
   const [dataLokasi, setLokasi] = useState("");
-  const {dataGraphql}  = useGetShift();
-  const [Tambah_shift, {loading, data, error}] = useMutation(insertShift,
-    {refetchQueries:[dataGraphql],
-    });
-   
-  if(loading) return<p>Loading...</p>;
-  if(error) return  `Submmission Error ! {error.message}`;
-  if(data) return<p>Data berasil disimpan...</p>
+  const { dataGraphql } = useGetShift();
+  const [Tambah_shift, { loading, data, error }] = useMutation(insertShift, {
+    refetchQueries: [dataGraphql],
+  });
+
+  const { data: queryLokasi } = useGetLokasi();
+  const dataQueryLokasi = queryLokasi.Data_Lokasi;
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return `Submmission Error ! {error.message}`;
+  if (data) return <p>Data berasil disimpan...</p>;
 
   const handleKodeShift = (e) => {
-    setKodeShift(e.target.value)
+    setKodeShift(e.target.value);
   };
 
   const handleMulai = (e) => {
-    setMulai(e.target.value)
+    setMulai(e.target.value);
   };
 
   const handleSelesai = (e) => {
-    setSelesai(e.target.value)
+    setSelesai(e.target.value);
   };
 
   const handleLokasi = (e) => {
-    setLokasi(e.target.value)
+    setLokasi(e.target.value);
   };
 
   const handleNamaShift = (e) => {
-    setNamaShift(e.target.value)
+    setNamaShift(e.target.value);
   };
 
   const handleClickSubmit = () => {
     Tambah_shift({
-      variables:{
+      variables: {
         kode_shift: dataKodeShift,
         nama_shift: dataNamaShift,
         waktu_mulai: dataMulai,
@@ -64,7 +82,7 @@ function CreateShift() {
       },
     });
   };
-  
+
   return (
     <>
       <main className="d-flex">
@@ -116,15 +134,20 @@ function CreateShift() {
                 />
               </div>
 
-              <div className="mb-3">
+              <div class="mb-3">
                 <label className="form-label">Lokasi</label>
-                <textarea
-                  type="text"
-                  className="form-control"
+
+                <select
+                  class="form-select"
+                  onChange={handleLokasi}
                   id="lokasi"
                   name="lokasi"
-                  onChange={handleLokasi}
-                />
+                >
+                  <option selected>Choose...</option>{" "}
+                  {dataQueryLokasi.map((data) => (
+                    <option value={data.nama_lokasi}>{data.nama_lokasi}</option>
+                  ))}
+                </select>
               </div>
               <button type="submit" className="btn btn-primary">
                 Submit

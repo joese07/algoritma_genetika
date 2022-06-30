@@ -17,6 +17,7 @@ import DetailRuangan from "./components/pages/ruangan/DetailRuangan";
 import EditShift from "./components/pages/shift/EditShift";
 import EditRuangan from "./components/pages/ruangan/EditRuangan";
 import CreateJadwal from "./components/pages/jadwal/create";
+import ProsesJadwal from "./components/pages/jadwal/Proses_Jadwal";
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
         <Route path="/ruangan/detail" element={<DetailRuangan />} />
         <Route path="/ruangan/edit/:id" element={<EditRuangan />} />
         <Route path="/create_jadwal" element={<CreateJadwal />} />
+        <Route path="/jadwal_proses" element={<ProsesJadwal />} />
       </Routes>
     </BrowserRouter>
   );
