@@ -2,17 +2,16 @@ import Sidebar from "../../partials/Sidebar";
 import { Link } from "react-router-dom";
 import { gql, useMutation } from "@apollo/client";
 import CreateRuangan from "./CreateRuangan";
-import useGetPembina from "../../../graphql/GetPembina";
+import useGetLokasi from "../../../graphql/GetLokasi";
 import EditRuangan from "./EditRuangan";
 
 function Ruangan() {
-  // const [id, setId] = useState()
+  const{data, loading, error} = useGetLokasi();
+  if(loading) return <div>Loading...</div>
+  if(error) return<div>Something went wrong...</div>
 
-  // const { error, loading, data } = useGetPembina();
-  // if (loading) return <div>Spinner...</div>;
-  // if (error) return <div>something went wrong</div>;
+  const dataLokasi = data.Data_Lokasi
 
-  // const dataPembina = data.Data_Pembina;
 
   return (
     <div>
@@ -36,11 +35,11 @@ function Ruangan() {
                   </tr>
                 </thead>
                 <tbody style={{ textAlign: "center" }}>
-                  {/* {dataPembina.map((pembina, index) => ( */}
+                 {dataLokasi.map((lokasi, index)=>(
                   <tr>
-                    <th>1</th>
-                    <th>R001</th>
-                    <td>Planet</td>
+                    <th>{index + 1 }</th>
+                    <th>{lokasi.kode_lokasi}</th>
+                    <td>{lokasi.nama_lokasi}</td>
                     <td>
                       <div class="d-flex justify-content-evenly">
                         <Link to={`/pembina/detail/:id`}>
@@ -69,7 +68,7 @@ function Ruangan() {
                       </div>
                     </td>
                   </tr>
-                  {/* ))} */}
+                  ))}
                 </tbody>
               </table>
               <button

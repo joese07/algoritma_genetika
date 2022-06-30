@@ -1,123 +1,137 @@
+import { Link } from "react-router-dom";
 import Sidebar from "../../partials/Sidebar";
+import CreateDataJadwal from "./create_jadwal";
 
 function CreateJadwal() {
-  return (
-    <div>
-      <main className="d-flex">
-        <Sidebar />
-        <div
-          className="b-example-divider b-example-vr"
-          style={{ height: 1000 }}
-        />
-        <div className="container">
-          <div className="mt-4 m-5">
-            <h3>Create Simpan Data Jadwal</h3>
-          </div>
-          <div className="card m-5">
-            <div className="card-body">
-              <form>
-                <div className="mb-3">
-                  <label htmlFor="exampleInputEmail1" className="form-label">
-                    Nama Lengkap
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="nama"
-                    id="nama"
-                  />
-                  <div id="emailHelp" className="form-text">
-                    We'll never share your email with anyone else.
+  return (    <>
+    <main className="d-flex flex-nowrap">
+      <Sidebar />
+      <div className="b-example-divider b-example-vr" />
+      <div className="container">
+        <div className=" bg-light rounded-2 mt-3">
+          <div className="container-fluid py-3">
+            <h1 className="display-5 fw-bold">Halaman Data Permintaan Jadwal</h1>
+            <p className="col-md-8 fs-4">
+              Klik tombol dibawah jika ingin langsung generate jadwal
+            </p>
+            <table className="table table-hover">
+              <thead>
+                <tr style={{ textAlign: "center" }}>
+                  <th scope="col">No</th>
+                  <th scope="col">Kode Permintaan Jadwal</th>
+                  <th scope="col">Hari 1</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style={{ textAlign: "center" }}>
+                  <th scope="row">1</th>
+                  <td>J001</td>
+                  <td>K001</td>
+                  <td>
+                    <div className="d-flex justify-content-evenly">
+                      <Link to="/anggota/detail">
+                        <div className="btn btn-success btn-sm" role="button">
+                          <i className="bi-eye-fill"></i> Lihat Detail
+                        </div>
+                      </Link>
+
+                      <button
+                        type="button"
+                        className="btn btn-primary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#formEdit"
+                        data-bs-whatever="@mdo"
+                      >
+                        Edit
+                      </button>
+                      <form
+                        method="post"
+                        action="/histories/<%= data.id %>?_method=DELETE"
+                      >
+                        <button
+                          className="btn btn-danger btn-sm"
+                          type="submit"
+                          onclick="return confirm('apakah anda yakin hapus data ?');"
+                        >
+                          <i className="bi-trash-fill"></i> Hapus
+                        </button>
+                      </form>
+                    </div>
+                  </td>
+                </tr>
+                
+              </tbody>
+            </table>
+            <button
+              type="button"
+              className="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#formInput"
+              data-bs-whatever="@mdo"
+            >
+              Buat Data shift
+            </button>
+
+            <div
+              className="modal fade"
+              id="formInput"
+              tabIndex={-1}
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div className="modal-dialog modal-lg">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h5 className="modal-title" id="exampleModalLabel">
+                      Tambah Data Shift
+                    </h5>
+                    <button
+                      type="button"
+                      className="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    />
+                  </div>
+                  <div className="modal-body">
+                    <CreateDataJadwal />
                   </div>
                 </div>
-                <div className="mb-3">
-                  <label htmlFor="exampleInputPassword1" className="form-label">
-                    Tempat Lahir
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="exampleInputPassword1"
-                    name="tempat_lahir"
-                  />
+              </div>
+            </div>
+            <div
+              className="modal fade"
+              id="formEdit"
+              tabIndex={-1}
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div className="modal-dialog modal-lg">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h5 className="modal-title" id="exampleModalLabel">
+                      Edit Data Shift
+                    </h5>
+                    <button
+                      type="button"
+                      className="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    />
+                  </div>
+                  <div className="modal-body">
+                    {/* <CreateShift /> */}
+                  </div>
                 </div>
-                <div className="mb-3">
-                  <label htmlFor="exampleInputPassword1" className="form-label">
-                    Tanggal Lahir
-                  </label>
-                  <input
-                    type="date"
-                    className="form-control"
-                    id="exampleInputPassword1"
-                    name="tanggal_lahir"
-                  />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="exampleInputPassword1" className="form-label">
-                    Jenis Kelamin
-                  </label>
-                  <select
-                    class="form-select"
-                    aria-label="Default select example"
-                  >
-                    <option selected>--Jenis Kelamin--</option>
-                    <option value="laki - laki">Laki - Laki</option>
-                    <option value="perempuan">Perempuan</option>
-                  </select>
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="exampleInputPassword1" className="form-label">
-                    Alamat
-                  </label>
-                  <textarea
-                    type="text"
-                    className="form-control"
-                    id="exampleInputPassword1"
-                    name="alamat"
-                  />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="exampleInputPassword1" className="form-label">
-                    No Telepon
-                  </label>
-                  <input
-                    type="tel"
-                    className="form-control"
-                    id="exampleInputPassword1"
-                    name="tanggal_lahir"
-                  />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="exampleInputPassword1" className="form-label">
-                    Alamat Email
-                  </label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="exampleInputPassword1"
-                    name="tanggal_lahir"
-                  />
-                </div>
-                <div className="mb-3 form-check">
-                  <input
-                    type="checkbox"
-                    className="form-check-input"
-                    id="exampleCheck1"
-                  />
-                  <label className="form-check-label" htmlFor="exampleCheck1">
-                    Dengan ini data yang saya masukkan telah benar dan sesuai
-                    dengan data sebenarnya{" "}
-                  </label>
-                </div>
-                <button type="submit" className="btn btn-primary">
-                  Submit
-                </button>
-              </form>
+              </div>
             </div>
           </div>
         </div>
-      </main>
-    </div>
+
+        <footer className="pt-3 mt-4 text-muted border-top">© 2022 dd</footer>
+      </div>
+    </main>
+  </>
   );
 }
 export default CreateJadwal;

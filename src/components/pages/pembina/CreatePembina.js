@@ -55,6 +55,7 @@ function CreatePembina() {
 
   const { data: dataPembina } = useQuery(getPembina);
   console.log(dataPembina);
+  console.log(getPembina)
 
   const [InsertPembina, { loading, data }] = useMutation(insertPembina, {
     refetchQueries: [getPembina],

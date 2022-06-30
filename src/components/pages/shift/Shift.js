@@ -2,10 +2,19 @@ import { Link } from "react-router-dom";
 import Sidebar from "../../partials/Sidebar";
 import CreateShift from "./CreateShift";
 import EditShift from "./EditShift";
+import useGetShift from "../../../graphql/GetShift";
 
 function Shift() {
+
+  const {error, loading, data } = useGetShift();
+
+  if (loading) return <div>Loading...</div>;
+  if(error) return <div>Something went wrong..</div>
+
+  const dataShift  = data.Data_Shift
+  
   return (
-    <div>
+    <>
       <main className="d-flex flex-nowrap">
         <Sidebar />
         <div className="b-example-divider b-example-vr" />
@@ -28,12 +37,13 @@ function Shift() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>S001</td>
-                    <td>07.00</td>
-                    <td>09.00</td>
-                    <td>Planet</td>
+                  {dataShift.map((shift, index)=>(                
+                  <tr style={{ textAlign: "center" }}>
+                    <th scope="row">{index + 1 }</th>
+                    <td>{shift.kode_shift}</td>
+                    <td>{shift.waktu_mulai}</td>
+                    <td>{shift.waktu_selesai}</td>
+                    <td>{shift.lokasi}</td>
                     <td>
                       <div className="d-flex justify-content-evenly">
                         <Link to="/anggota/detail">
@@ -58,7 +68,7 @@ function Shift() {
                           <button
                             className="btn btn-danger btn-sm"
                             type="submit"
-                            onclick="return confirm('apakah anda yakin hapus data ?');"
+                           
                           >
                             <i className="bi-trash-fill"></i> Hapus
                           </button>
@@ -66,44 +76,7 @@ function Shift() {
                       </div>
                     </td>
                   </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>S002</td>
-                    <td>09.00</td>
-                    <td>11.00</td>
-                    <td>Garden</td>
-                    <td>
-                      <div className="d-flex justify-content-evenly">
-                        <Link to="/anggota/detail">
-                          <div className="btn btn-success btn-sm" role="button">
-                            <i className="bi-eye-fill"></i> Lihat Detail
-                          </div>
-                        </Link>
-
-                        <button
-                          type="button"
-                          className="btn btn-primary"
-                          data-bs-toggle="modal"
-                          data-bs-target="#formEdit"
-                          data-bs-whatever="@mdo"
-                        >
-                          Edit
-                        </button>
-                        <form
-                          method="post"
-                          action="/histories/<%= data.id %>?_method=DELETE"
-                        >
-                          <button
-                            className="btn btn-danger btn-sm"
-                            type="submit"
-                            onclick="return confirm('apakah anda yakin hapus data ?');"
-                          >
-                            <i className="bi-trash-fill"></i> Hapus
-                          </button>
-                        </form>
-                      </div>
-                    </td>
-                  </tr>
+                  ))}
                 </tbody>
               </table>
               <button
@@ -137,7 +110,7 @@ function Shift() {
                       />
                     </div>
                     <div className="modal-body">
-                      <EditShift />
+                      <CreateShift />
                     </div>
                   </div>
                 </div>
@@ -163,7 +136,7 @@ function Shift() {
                       />
                     </div>
                     <div className="modal-body">
-                      <CreateShift />
+                      <EditShift />
                     </div>
                   </div>
                 </div>
@@ -174,7 +147,7 @@ function Shift() {
           <footer className="pt-3 mt-4 text-muted border-top">© 2022 dd</footer>
         </div>
       </main>
-    </div>
+    </>
   );
 }
 

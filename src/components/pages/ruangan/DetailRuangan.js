@@ -1,7 +1,6 @@
 import Sidebar from "../../partials/Sidebar";
-import { useParams } from "react-router";
 import React from "react";
-import useDataPembinaa from "../../../hooks/useDataPembinaa";
+
 import { Link } from "react-router-dom";
 
 function DetailRuangan() {
