@@ -1,8 +1,40 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import useGetLokasi from "../../../graphql/GetLokasi";
+import useGetPembina from "../../../graphql/GetPembina";
 import Sidebar from "../../partials/Sidebar";
 import ProsesGenetika from "./ProsesGenetika";
 
 function Proses_jadwal() {
+  const [dataKromosom, setKromosom] = useState();
+  const { error, loading, data } = useGetPembina();
+
+  if (loading) return <div>Spinner...</div>;
+  if (error) return <div>something went wrong</div>;
+
+  const dataPembina = data.Data_Pembina.map(function (data) {
+    return data.nama;
+  });
+
+  console.log(dataPembina);
+
+  const handleTester = () => {
+    // const totalDataPembina = dataPembina.length;
+    const randomName = Math.floor(Math.random() * dataPembina.length);
+
+    console.log(dataPembina[randomName]);
+    setKromosom(31 * 3);
+    console.log(dataKromosom);
+
+    for (let randomName = 0; randomName < dataKromosom; randomName++) {
+      if (dataPembina[randomName] === undefined) {
+        console.log("ulangi");
+      } else {
+        console.log(dataPembina[randomName]);
+      }
+    }
+  };
+
   return (
     <>
       <main className="d-flex flex-nowrap">
@@ -40,6 +72,11 @@ function Proses_jadwal() {
                   <option value="Januari">Januari</option>
                   <option value="Februari">Februari</option>
                 </select>
+              </div>
+              <div className="mb-3">
+                <button className="btn btn-success" onClick={handleTester}>
+                  Tester
+                </button>
               </div>
               <div className="mt-4 d-flex justify-content-end mb-4">
                 <button
