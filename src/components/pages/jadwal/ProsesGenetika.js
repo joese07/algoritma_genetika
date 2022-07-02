@@ -19,10 +19,10 @@ function ProsesGenetika() {
                   <strong>' 1'</strong>
                 </div>
               </div>
-              <div class="mb-3">
+              <div className="mb-3">
                 <label className="form-label">Jumlah Crossover</label>
                 <select
-                  class="form-select"
+                  className="form-select"
                   //   onChange={handleLokasi}
                   id="crossover"
                   name="crossover"
@@ -34,10 +34,10 @@ function ProsesGenetika() {
                   {/* ))} */}
                 </select>
               </div>
-              <div class="mb-3">
+              <div className="mb-3">
                 <label className="form-label">Probabilitas Mutasi %</label>
                 <select
-                  class="form-select"
+                  className="form-select"
                   //   onChange={handleLokasi}
                   id="probabilitas"
                   name="probabilitas"
@@ -53,10 +53,10 @@ function ProsesGenetika() {
                   {/* ))} */}
                 </select>
               </div>
-              <div class="mb-3">
+              <div className="mb-3">
                 <label className="form-label">aktifkan Permintaan Jadwal</label>
                 <select
-                  class="form-select"
+                  className="form-select"
                   //   onChange={handleLokasi}
                   id="permintaan_jadwal"
                   name="permintaan_jadwal"

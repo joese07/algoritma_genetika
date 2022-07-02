@@ -227,10 +227,10 @@ function CreatePembina() {
                     required
                   />
                 </div>
-                <div class="mb-3">
+                <div className="mb-3">
                   <label className="form-label">Kualitas</label>
                   <select
-                    class="form-select"
+                    className="form-select"
                     onChange={handleKualitas}
                     id="lokasi"
                     name="lokasi"
@@ -241,10 +241,10 @@ function CreatePembina() {
                     <option value="Baik">Baik</option>
                   </select>
                 </div>
-                <div class="mb-3">
+                <div className="mb-3">
                   <label className="form-label">Lokasi</label>
                   <select
-                    class="form-select"
+                    className="form-select"
                     onChange={handleLokasi}
                     id="lokasi"
                     name="lokasi"

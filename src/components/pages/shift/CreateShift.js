@@ -134,11 +134,11 @@ function CreateShift() {
                 />
               </div>
 
-              <div class="mb-3">
+              <div className="mb-3">
                 <label className="form-label">Lokasi</label>
 
                 <select
-                  class="form-select"
+                  className="form-select"
                   onChange={handleLokasi}
                   id="lokasi"
                   name="lokasi"

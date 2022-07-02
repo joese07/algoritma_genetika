@@ -35,13 +35,13 @@ function CreateDataJadwal() {
                   />
                 </div>
                 <div className="mb-3">  
-                    <label for="inputState" class="form-label">State</label>
-                    <select id="inputState" class="form-select">
+                    <label for="inputState" className="form-label">State</label>
+                    <select id="inputState" className="form-select">
                     <option selected>Choose...</option>
                     <option>...</option>
                 </select>
                 </div>
-                <div class="mb-3">
+                <div className="mb-3">
                     <label for="formFile" className="form-label">Default file input example</label>
                     <input className="form-control" type="file" id="formFile" />
                 </div>

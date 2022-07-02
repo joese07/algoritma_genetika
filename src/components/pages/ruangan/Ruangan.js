@@ -36,15 +36,15 @@ function Ruangan() {
                 </thead>
                 <tbody style={{ textAlign: "center" }}>
                  {dataLokasi.map((lokasi, index)=>(
-                  <tr>
+                  <tr key={lokasi}>
                     <th>{index + 1 }</th>
                     <th>{lokasi.kode_lokasi}</th>
                     <td>{lokasi.nama_lokasi}</td>
                     <td>
-                      <div class="d-flex justify-content-evenly">
+                      <div className="d-flex justify-content-evenly">
                         <Link to={`/pembina/detail/:id`}>
-                          <div class="btn btn-success btn-sm" role="button">
-                            <i class="bi-eye-fill"></i> Lihat Detail
+                          <div className="btn btn-success btn-sm" role="button">
+                            <i className="bi-eye-fill"></i> Lihat Detail
                           </div>
                         </Link>
                         <button
@@ -57,7 +57,7 @@ function Ruangan() {
                           Edit
                         </button>
                         <button
-                          class="btn btn-danger btn-sm"
+                          className="btn btn-danger btn-sm"
                           type="submit"
                           // onClick={() => {
                           //   deleteData({ variables: { id: pembina.id } });

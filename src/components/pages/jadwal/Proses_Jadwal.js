@@ -20,19 +20,17 @@ function Proses_jadwal() {
 
   const handleTester = () => {
     // const totalDataPembina = dataPembina.length;
-    const randomName = Math.floor(Math.random() * dataPembina.length);
-
-    console.log(dataPembina[randomName]);
+    // const randomName = Math.floor(Math.random() * dataPembina.length);
+    const randomName = dataPembina.sort(()=>Math.random() - dataPembina.length);
+    // const hasil = dataPembina[randomName]
+    // console.log(dataPembina[randomName]);
     setKromosom(31 * 3);
     console.log(dataKromosom);
+    console.log( ` namanya adalah ` + randomName )
 
-    for (let randomName = 0; randomName < dataKromosom; randomName++) {
-      if (dataPembina[randomName] === undefined) {
-        console.log("ulangi");
-      } else {
-        console.log(dataPembina[randomName]);
-      }
-    }
+    // for (let randomName = 0; randomName < dataKromosom; randomName++) {
+    //     console.log(dataPembina[randomName]);
+    // }
   };
 
   return (

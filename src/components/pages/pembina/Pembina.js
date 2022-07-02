@@ -64,25 +64,25 @@ function Pembina() {
                       <td>{pembina.no_telepon}</td>
                       <td>{pembina.alamat_email}</td>
                       <td>
-                        <div class="d-flex justify-content-evenly">
+                        <div className="d-flex justify-content-evenly">
                           <Link to={`/pembina/detail/${pembina.id}`}>
-                            <div class="btn btn-success btn-sm" role="button">
-                              <i class="bi-eye-fill"></i> Lihat Detail
+                            <div className="btn btn-success btn-sm" role="button">
+                              <i className="bi-eye-fill"></i> Lihat Detail
                             </div>
                           </Link>
                           <Link to={`/pembina/edit/${pembina.id}`}>
-                            <div class="btn btn-primary btn-sm" role="button">
-                              <i class="bi-pencil-fill"></i> Edit
+                            <div className="btn btn-primary btn-sm" role="button">
+                              <i className="bi-pencil-fill"></i> Edit
                             </div>
                           </Link>
                           <button
-                            class="btn btn-danger btn-sm"
+                            className="btn btn-danger btn-sm"
                             type="submit"
                             // onClick={() => {
                             //   deleteData({ variables: { id: pembina.id } });
                             // }}
                           >
-                            <i class="bi-trash-fill"></i> Hapus
+                            <i className="bi-trash-fill"></i> Hapus
                           </button>
                         </div>
                       </td>
