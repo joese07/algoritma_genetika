@@ -15,18 +15,21 @@ function Proses_jadwal() {
   const dataPembina = data.Data_Pembina.map(function (data) {
     return data.nama;
   });
+  const randomName = dataPembina.sort(() => Math.random() - 0.5);
+  const randomNameDua = dataPembina.sort(() => Math.random() - 0.5);
 
-  console.log(dataPembina);
-
+  // console.log(dataPembina);
+  // const lengthDataPembina = dataPembina.length;
+  // console.log(lengthDataPembina);
   const handleTester = () => {
     // const totalDataPembina = dataPembina.length;
     // const randomName = Math.floor(Math.random() * dataPembina.length);
-    const randomName = dataPembina.sort(()=>Math.random() - dataPembina.length);
+
     // const hasil = dataPembina[randomName]
     // console.log(dataPembina[randomName]);
-    setKromosom(31 * 3);
+
     console.log(dataKromosom);
-    console.log( ` namanya adalah ` + randomName )
+    console.log(randomName);
 
     // for (let randomName = 0; randomName < dataKromosom; randomName++) {
     //     console.log(dataPembina[randomName]);
@@ -86,8 +89,92 @@ function Proses_jadwal() {
                 >
                   Buat Jadwal
                 </button>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#prosesAlgoritma"
+                  data-bs-whatever="@mdo"
+                >
+                  Pross Algoritma
+                </button>
               </div>
 
+              <div
+                className="modal fade"
+                id="prosesAlgoritma"
+                tabIndex={-1}
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div className="modal-dialog modal-lg">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <h5 className="modal-title" id="exampleModalLabel">
+                        Data Kromosom
+                      </h5>
+                      <button
+                        type="button"
+                        className="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      />
+                    </div>
+                    <div className="modal-body">
+                      <div className="mb-3">
+                        <div className="table-responsive">
+                          <table className="table">
+                            <thead>
+                              <tr>
+                                <th>kromosom / gen</th>
+                                <th>1</th>
+                                <th>2</th>
+                                <th>3</th>
+                                <th>4</th>
+                                <th>5</th>
+                                <th>6</th>
+                                <th>7</th>
+                                <th>8</th>
+                                <th>9</th>
+                                <th>10</th>
+                                <th>11</th>
+                                <th>12</th>
+                                <th>13</th>
+                                <th>14</th>
+                                <th>15</th>
+                                <th>16</th>
+                                <th>17</th>
+                                <th>18</th>
+                                <th>19</th>
+                                <th>20</th>
+                                <th>21</th>
+                                <th>22</th>
+                                <th>23</th>
+                                <th>24</th>
+                              </tr>
+                            </thead>
+
+                            <tbody>
+                              <tr>
+                                <td>Kromosom 1</td>
+                                {randomName.map((data) => (
+                                  <td>{data}</td>
+                                ))}
+                              </tr>
+                              <tr>
+                                <td>Kromosom 2</td>
+                                {randomNameDua.map((data) => (
+                                  <td>{data}</td>
+                                ))}
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>{" "}
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div
                 className="modal fade"
                 id="formInput"
