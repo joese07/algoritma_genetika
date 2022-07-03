@@ -15,8 +15,59 @@ function Proses_jadwal() {
   const dataPembina = data.Data_Pembina.map(function (data) {
     return data.nama;
   });
-  const randomName = dataPembina.sort(() => Math.random() - 0.5);
-  const randomNameDua = dataPembina.sort(() => Math.random() - 0.5);
+
+  const dataPembinaDua = data.Data_Pembina.map(function (data) {
+    return data.nama;
+  });
+
+  const dataPembinaTiga = data.Data_Pembina.map(function (data) {
+    return data.nama;
+  });
+
+  const dataPembinaEmpat = data.Data_Pembina.map(function (data) {
+    return data.nama;
+  });
+
+  for(let i = 0; i <= dataPembina.length - 2; i++){
+  let j = Math.floor(Math.random() * dataPembina.length);
+  let temp = dataPembina[i];
+  dataPembina[i] = dataPembina[j];
+  dataPembina[j] = temp;
+  }
+  
+  console.log(dataPembina)
+
+  
+  for(let i = 0; i <= dataPembinaDua.length - 2; i++){
+    let j = Math.floor(Math.random() * dataPembinaDua.length);
+    let temp = dataPembinaDua[i];
+    dataPembinaDua[i] = dataPembinaDua[j];
+    dataPembinaDua[j] = temp;
+    }
+    
+    console.log(dataPembinaDua)
+
+    
+  for(let i = 0; i <= dataPembinaTiga.length - 2; i++){
+    let j = Math.floor(Math.random() * dataPembinaTiga.length);
+    let temp = dataPembinaTiga[i];
+    dataPembinaTiga[i] = dataPembinaTiga[j];
+    dataPembinaTiga[j] = temp;
+    }
+    
+    console.log(dataPembinaTiga)
+
+    
+  for(let i = 0; i <= dataPembinaEmpat.length - 2; i++){
+    let j = Math.floor(Math.random() * dataPembinaEmpat.length);
+    let temp = dataPembinaEmpat[i];
+    dataPembinaEmpat[i] = dataPembinaEmpat[j];
+    dataPembinaEmpat[j] = temp;
+    }
+    
+    console.log(dataPembinaEmpat)
+  // const randomName = dataPembina.sort(() => Math.random() - 0.5);
+  // const randomNameDua = dataPembina.sort(() => Math.random() - 0.5);
 
   // console.log(dataPembina);
   // const lengthDataPembina = dataPembina.length;
@@ -29,8 +80,7 @@ function Proses_jadwal() {
     // console.log(dataPembina[randomName]);
 
     console.log(dataKromosom);
-    console.log(randomName);
-
+    
     // for (let randomName = 0; randomName < dataKromosom; randomName++) {
     //     console.log(dataPembina[randomName]);
     // }
@@ -157,16 +207,29 @@ function Proses_jadwal() {
                             <tbody>
                               <tr>
                                 <td>Kromosom 1</td>
-                                {randomName.map((data) => (
+                                {dataPembina.map((data) => (
                                   <td>{data}</td>
                                 ))}
                               </tr>
                               <tr>
                                 <td>Kromosom 2</td>
-                                {randomNameDua.map((data) => (
+                                {dataPembinaDua.map((data) => (
                                   <td>{data}</td>
                                 ))}
                               </tr>
+                              <tr>
+                                <td>Kromosom 3</td>
+                                {dataPembinaTiga.map((data) => (
+                                  <td>{data}</td>
+                                ))}
+                              </tr>
+                              <tr>
+                                <td>Kromosom 4</td>
+                                {dataPembinaEmpat.map((data) => (
+                                  <td>{data}</td>
+                                ))}
+                              </tr>
+ 
                             </tbody>
                           </table>
                         </div>
