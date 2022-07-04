@@ -17,7 +17,7 @@ import DetailRuangan from "./components/pages/ruangan/DetailRuangan";
 import EditShift from "./components/pages/shift/EditShift";
 import EditRuangan from "./components/pages/ruangan/EditRuangan";
 import CreateJadwal from "./components/pages/jadwal/create";
-import ProsesJadwal from "./components/pages/jadwal/Proses_Jadwal";
+import ProsesJadwal from "./components/pages/jadwal/ProsesJadwal";
 
 function App() {
   return (

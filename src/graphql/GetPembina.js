@@ -11,6 +11,7 @@ const getPembina = gql`
       alamat_email
       no_telepon
       alamat
+      kualitas
     }
   }
 `;
