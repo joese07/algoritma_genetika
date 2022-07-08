@@ -18,6 +18,7 @@ import EditShift from "./components/pages/shift/EditShift";
 import EditRuangan from "./components/pages/ruangan/EditRuangan";
 import CreateJadwal from "./components/pages/jadwal/create";
 import ProsesJadwal from "./components/pages/jadwal/ProsesJadwal";
+import Login from "./components/pages/Login";
 
 function App() {
   return (
@@ -44,10 +45,10 @@ function App() {
         <Route path="/shift/edit/:id" element={<EditShift />} />
         <Route path="/ruangan" element={<Ruangan />} />
         <Route path="/ruangan/create" element={<CreateRuangan />} />
-        <Route path="/ruangan/detail" element={<DetailRuangan />} />
         <Route path="/ruangan/edit/:id" element={<EditRuangan />} />
         <Route path="/create_jadwal" element={<CreateJadwal />} />
         <Route path="/jadwal_proses" element={<ProsesJadwal />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );
