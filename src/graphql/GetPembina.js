@@ -12,6 +12,7 @@ const getPembina = gql`
       no_telepon
       alamat
       kualitas
+      nilai
     }
   }
 `;

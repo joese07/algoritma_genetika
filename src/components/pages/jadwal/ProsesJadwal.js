@@ -7,12 +7,14 @@ import ProsesGenetika from "./ProsesGenetika";
 function Prosesjadwal() {
   const [dataKromosom, setKromosom] = useState();
   const { error, loading, data } = useGetPembina();
+  const [lokasi, setLokasi] = useState("");
+  const [bulan, setBulan] = useState("");
 
   if (loading) return <div>Spinner...</div>;
   if (error) return <div>something went wrong</div>;
 
   const dataPembina = data.Data_Pembina.map((data) => {
-    return `${data.nama} = ${data.kualitas}`;
+    return `${data.nama} : ${data.kualitas}  : ${data.nilai}`;
   });
 
   console.log(dataPembina);
@@ -207,6 +209,14 @@ function Prosesjadwal() {
     // }
   };
 
+  const handleLokasi = (e) => {
+    setLokasi(e.target.value);
+  };
+
+  const handleBulan = (e) => {
+    setBulan(e.target.value);
+  };
+
   return (
     <>
       <main className="d-flex flex-nowrap">
@@ -226,6 +236,7 @@ function Prosesjadwal() {
                 <select
                   className="form-select"
                   aria-label="Default select example"
+                  onChange={handleLokasi}
                 >
                   <option selected>-- Pilih Lokasi --</option>
                   <option value="Bandung">Bandung</option>
@@ -239,6 +250,7 @@ function Prosesjadwal() {
                 <select
                   className="form-select"
                   aria-label="Default select example"
+                  onChange={handleBulan}
                 >
                   <option selected>-- Pilih Bulan --</option>
                   <option value="Januari">Januari</option>
@@ -268,7 +280,7 @@ function Prosesjadwal() {
                   data-bs-target="#prosesAlgoritma"
                   data-bs-whatever="@mdo"
                 >
-                  Pross Algoritma
+                  Proses kromosom
                 </button>
               </div>
 
@@ -292,7 +304,10 @@ function Prosesjadwal() {
                         aria-label="Close"
                       />
                     </div>
+
                     <div className="modal-body">
+                      <h4>Data Lokasi : {lokasi}</h4>
+                      <h4>Data Bulan : {bulan}</h4>
                       <div className="mb-3">
                         <div className="table-responsive">
                           <table

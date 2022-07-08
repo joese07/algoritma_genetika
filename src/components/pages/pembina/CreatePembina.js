@@ -1,7 +1,6 @@
-import Sidebar from "../../partials/Sidebar";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+
 import useGetLokasi from "../../../graphql/GetLokasi";
 
 const getPembina = gql`
@@ -30,6 +29,7 @@ const insertPembina = gql`
     $tempat_lahir: String
     $lokasi: String
     $kualitas: String
+    $nilai: Int
   ) {
     insert_Data_Pembina(
       objects: {
@@ -42,6 +42,7 @@ const insertPembina = gql`
         alamat_email: $alamat_email
         lokasi: $lokasi
         kualitas: $kualitas
+        nilai: $nilai
       }
     ) {
       affected_rows
@@ -59,6 +60,7 @@ function CreatePembina() {
   const [dataAlamatEmail, setAlamatEmail] = useState("");
   const [dataKualitas, setKualitas] = useState("");
   const [dataLokasi, setLokasi] = useState("");
+  const [nilai, setNilai] = useState();
 
   const { data: dataPembina } = useQuery(getPembina);
   console.log(dataPembina);
@@ -101,6 +103,15 @@ function CreatePembina() {
 
   const handleKualitas = (e) => {
     setKualitas(e.target.value);
+
+    let hasil;
+    if (e.target.value === "Kurang") {
+      hasil = 1;
+    } else {
+      hasil = 0;
+    }
+
+    setNilai(hasil);
   };
 
   const handleLokasi = (e) => {
@@ -119,12 +130,17 @@ function CreatePembina() {
         alamat: dataAlamat,
         lokasi: dataLokasi,
         kualitas: dataKualitas,
+        nilai: nilai,
       },
     });
   };
 
   if (loading) return <p>Loading...</p>;
   if (data) return <p>Data berhasil disimpan</p>;
+
+  console.log(nilai);
+  console.log(dataKualitas);
+  console.log(dataNama);
 
   return (
     <div>
@@ -237,7 +253,6 @@ function CreatePembina() {
                   >
                     <option selected>Choose...</option>
                     <option value="Kurang">Kurang</option>
-                    <option value="Cukup">Cukup</option>
                     <option value="Baik">Baik</option>
                   </select>
                 </div>
