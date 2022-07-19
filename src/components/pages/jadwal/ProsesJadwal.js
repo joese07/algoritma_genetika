@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+import ReactHTMLTableToExcel from "react-html-table-to-excel";
 
 import useGetPembina from "../../../graphql/GetPembina";
 import Sidebar from "../../partials/Sidebar";
@@ -9,6 +10,7 @@ function Prosesjadwal() {
   const { error, loading, data } = useGetPembina();
   const [lokasi, setLokasi] = useState("");
   const [bulan, setBulan] = useState("");
+  const tableRef = useRef(null);
 
   if (loading) return <div>Spinner...</div>;
   if (error) return <div>something went wrong</div>;
@@ -308,11 +310,19 @@ function Prosesjadwal() {
                     <div className="modal-body">
                       <h4>Data Lokasi : {lokasi}</h4>
                       <h4>Data Bulan : {bulan}</h4>
+                      <ReactHTMLTableToExcel
+                        id="test-table-xls-button"
+                        className="download-table-xls-button btn btn-success mb-3"
+                        table="table-to-xls"
+                        filename="tablexls"
+                        sheet="tablexls"
+                        buttonText="Export Data to Excel Sheet"
+                      />
                       <div className="mb-3">
                         <div className="table-responsive">
                           <table
                             className="table table-bordered"
-                            id="dtHorizontalExample"
+                            id="table-to-xls"
                           >
                             <thead>
                               <tr>
